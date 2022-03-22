@@ -15,6 +15,7 @@ import {
 } from '../services/service';
 import {SliderBox} from 'react-native-image-slider-box';
 import List from '../components/List';
+import Error from '../components/Error';
 
 const dimensions = Dimensions.get('screen');
 export const Home = () => {
@@ -65,12 +66,10 @@ export const Home = () => {
       )
       .catch(err => setError(err))
       .finally(() => setLoaded(true));
-
-   
   }, []);
   return (
     <React.Fragment>
-      {loaded && (
+      {loaded && !error && (
         <ScrollView>
           {/* moviesImages */}
           {moviesImages && (
@@ -115,6 +114,7 @@ export const Home = () => {
         </ScrollView>
       )}
       {!loaded && <ActivityIndicator size="large" />}
+      {error && <Error />}
     </React.Fragment>
   );
 };
