@@ -12,7 +12,7 @@ class Card extends React.PureComponent {
   render() {
     const {navigation, item} = this.props;
 
-    const onPress = () => navigation.navigate('Detail');
+    const onPress = () => navigation.navigate('Detail', {movieId: item.id});
     return (
       <TouchableOpacity onPress={onPress} style={styles.container}>
         <Image
